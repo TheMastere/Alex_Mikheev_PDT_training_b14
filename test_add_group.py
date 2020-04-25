@@ -52,7 +52,7 @@ class TestAddGroup(unittest.TestCase):
     def test_add_group(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd, login="admin", password="secret")
+        self.login(wd, username="admin", password="secret")
         self.open_groups_page(wd)
         self.create_group(wd, name="fffefegrre", header="ewwegrge", footer="wewefeg")
         self.return_to_group_page(wd)
