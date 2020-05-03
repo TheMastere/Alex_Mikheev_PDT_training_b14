@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from new_contact import New_contact
-from application_new_contact import Application_new_contact
+from model.new_contact import New_contact
+from fixture.application_new_contact import Application_new_contact
 
 
 @pytest.fixture
@@ -11,7 +11,7 @@ def app(request):
     return fixture
 
 def test_create_new_contact(app):
-    app.login(username="admin", password="secret")
+    app.contact_session.login(username="admin", password="secret")
     app.add_new_contact()
     app.fill_new_form_for_add_new_contact(
         New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
@@ -20,4 +20,4 @@ def test_create_new_contact(app):
                     email="fesefsf@mail.ru", address2="awwaagwg ffeef fefert", phone2="89066666666",
                     notes="awfawafwa fjfjhw fehgerrt"))
     app.submit_new_contact()
-    app.logout()
+    app.contact_session.logout()
