@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from model.new_contact import New_contact
+from model.group_new_contact import New_contact
 from fixture.application_new_contact import Application_new_contact
 
 
