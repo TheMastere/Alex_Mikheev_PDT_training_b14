@@ -57,6 +57,15 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(new_contact.notes)
 
+    def delete_contact(self):
+        wd = self.app.wd
+        # select contact
+        wd.find_element_by_name("selected[]").click()
+        # delete contact
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        # submit delete contact
+        wd.switch_to_alert().accept()
+
     def submit_new_contact(self):
         wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
