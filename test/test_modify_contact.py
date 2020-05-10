@@ -10,3 +10,15 @@ def test_modify_contact(app):
                     email="jfhwwfiwi@yandex.ru", address2="gwiiree ierjjie oerperpe", phone2="8973333333",
                     notes="jfkwkjfkw jwfjwfj whfhwfhwfwfiwffw"))
     app.session.logout()
+
+def test_modify_contact_firstname(app):
+    app.session.login(username="admin", password="secret")
+    app.group_new_contact.modify_contact(
+        New_contact(firstname="Koleksandr111"))
+    app.session.logout()
+
+def test_modify_contact_address(app):
+    app.session.login(username="admin", password="secret")
+    app.group_new_contact.modify_contact(
+        New_contact(address="NOadress nowadhhge g111ert"))
+    app.session.logout()
