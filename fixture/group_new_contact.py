@@ -34,6 +34,7 @@ class ContactHelper:
         self.fill_contact_form(new_contact)
         # submit modification
         wd.find_element_by_name("update").click()
+        wd.find_element_by_link_text("home page").click()
 
     def fill_contact_form(self, new_contact):
         wd = self.app.wd
@@ -63,3 +64,4 @@ class ContactHelper:
     def submit_new_contact(self):
         wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        wd.find_element_by_link_text("home page").click()
