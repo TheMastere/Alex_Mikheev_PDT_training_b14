@@ -4,6 +4,11 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def open_home_page(self):
+        wd = self.app.wd
+        if not (wd.current_url == "http://localhost/addressbook/") and (len(wd.find_elements_by_name("add")) > 0):
+            wd.find_element_by_link_text("home").click()
+
     def add_new_contact(self):
         wd = self.app.wd
         # open page for add new contact
@@ -71,7 +76,3 @@ class ContactHelper:
         wd = self.app.wd
         self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
-
-    def open_home_page(self):
-        wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
