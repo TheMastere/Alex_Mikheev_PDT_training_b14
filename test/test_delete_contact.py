@@ -1,4 +1,3 @@
-
 from model.group_new_contact import New_contact
 
 
@@ -13,4 +12,7 @@ def test_delete_contact(app):
                         email="fesefsf@mail.ru", address2="awwaagwg ffeef fefert", phone2="89066666666",
                         notes="awfawafwa fjfjhw fehgerrt"))
         app.group_new_contact.submit_new_contact()
+        old_contacts = app.group_new_contact.get_contact_list()
         app.group_new_contact.delete_contact()
+        new_contacts = app.group_new_contact.get_contact_list()
+        assert len(old_contacts) - 1 == len(new_contacts)
