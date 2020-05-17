@@ -7,7 +7,7 @@ class ContactHelper:
 
     def open_home_page(self):
         wd = self.app.wd
-        if not (wd.current_url == "http://localhost/addressbook/") and (len(wd.find_elements_by_name("add")) > 0):
+        if not (wd.current_url == "http://localhost/addressbook/" and len(wd.find_elements_by_name("add")) > 0):
             wd.find_element_by_link_text("home").click()
 
     def add_new_contact(self):
