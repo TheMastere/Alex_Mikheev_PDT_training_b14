@@ -10,10 +10,13 @@ class ContactHelper:
         if not (wd.current_url == "http://localhost/addressbook/" and len(wd.find_elements_by_name("add")) > 0):
             wd.find_element_by_link_text("home").click()
 
-    def add_new_contact(self):
+    def add_new_contact(self, new_contact):
         wd = self.app.wd
         self.open_home_page()
         wd.find_element_by_link_text("add new").click()
+        self.fill_contact_form(new_contact)
+        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        self.open_home_page()
 
     def fill_new_form_for_add_new_contact(self, new_contact):
         wd = self.app.wd
@@ -67,11 +70,6 @@ class ContactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
-
-    def submit_new_contact(self):
-        wd = self.app.wd
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        wd.find_element_by_link_text("home page").click()
 
     def count(self):
         wd = self.app.wd
