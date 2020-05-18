@@ -17,6 +17,7 @@ class ContactHelper:
         self.fill_contact_form(new_contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.open_home_page()
+        self.contact_cache = None
 
     def fill_new_form_for_add_new_contact(self, new_contact):
         wd = self.app.wd
@@ -30,6 +31,7 @@ class ContactHelper:
         # submit delete contact
         wd.switch_to_alert().accept()
         self.open_home_page()
+        self.contact_cache = None
 
     def select_contact(self):
         wd = self.app.wd
@@ -45,6 +47,7 @@ class ContactHelper:
         # submit modification
         wd.find_element_by_name("update").click()
         wd.find_element_by_link_text("home page").click()
+        self.contact_cache = None
 
     def fill_contact_form(self, new_contact):
         wd = self.app.wd
@@ -76,16 +79,19 @@ class ContactHelper:
         self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    contact_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.open_home_page()
-        contacts = []
-        for element in wd.find_elements_by_name("entry"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(
-                New_contact(firstname=text, middlename=text, lastname=text, nickname=text, title=text, company=text,
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.open_home_page()
+            self.contact_cache = []
+            for element in wd.find_elements_by_name("entry"):
+                text = element.text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.contact_cache.append(
+                     New_contact(firstname=text, middlename=text, lastname=text, nickname=text, title=text, company=text,
                             address=text,
                             home=text, mobile=text, work=text, fax=text, email=text, address2=text, phone2=text,
                             notes=text, id=id))
-        return contacts
+        return list(self.contact_cache)
