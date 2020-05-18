@@ -39,6 +39,7 @@ class ContactHelper:
 
     def modify_contact(self, new_contact):
         wd = self.app.wd
+        self.open_home_page()
         self.select_contact()
         # click button for edit contact
         wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
