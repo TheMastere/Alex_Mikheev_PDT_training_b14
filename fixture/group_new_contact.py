@@ -86,13 +86,12 @@ class ContactHelper:
         if self.contact_cache is None:
             wd = self.app.wd
             self.open_home_page()
+            contacts = wd.find_elements_by_name("entry")
             self.contact_cache = []
-            for element in wd.find_elements_by_name("entry"):
-                text = element.text
+            for element in contacts:
+                fname = element.find_element_by_css_selector("td:nth-child(2)").text
+                lname = element.find_element_by_css_selector("td:nth-child(3)").text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 self.contact_cache.append(
-                     New_contact(firstname=text, middlename=text, lastname=text, nickname=text, title=text, company=text,
-                            address=text,
-                            home=text, mobile=text, work=text, fax=text, email=text, address2=text, phone2=text,
-                            notes=text, id=id))
+                     New_contact(firstname=fname, lastname=lname, id=id))
         return list(self.contact_cache)
