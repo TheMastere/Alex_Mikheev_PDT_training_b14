@@ -89,8 +89,8 @@ class ContactHelper:
             contacts = wd.find_elements_by_name("entry")
             self.contact_cache = []
             for element in contacts:
-                fname = element.find_element_by_css_selector("td:nth-child(2)").text
-                lname = element.find_element_by_css_selector("td:nth-child(3)").text
+                fname = element.find_element_by_css_selector("td:nth-child(3)").text
+                lname = element.find_element_by_css_selector("td:nth-child(2)").text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
                 self.contact_cache.append(
                      New_contact(firstname=fname, lastname=lname, id=id))
