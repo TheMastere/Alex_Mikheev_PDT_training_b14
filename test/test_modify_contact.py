@@ -1,4 +1,4 @@
-from model.group_new_contact import New_contact
+from model.contact import New_contact
 from random import randrange
 
 
@@ -7,7 +7,7 @@ def test_modify_contact(app):
         app.group_new_contact.add_new_contact(
             New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
                         company="erreeg",
-                        address="fwfawfaf fwfwaf fferwrr", home="wfwff", mobile="89077777777", work="wrefddf",
+                        address="fwfawfaf fwfwaf fferwrr", home="454655665", mobile="89077777777", work="5656565656",
                         fax="809876",
                         email="fesefsf@mail.ru", address2="awwaagwg ffeef fefert", phone2="89066666666",
                         notes="awfawafwa fjfjhw fehgerrt"))
@@ -16,7 +16,7 @@ def test_modify_contact(app):
     contacts = New_contact(firstname="Niokolay", middlename="ggggg", lastname="Stekolnikov", nickname="Steklov",
                            title="razotr",
                            company="bichpacket",
-                           address="kifwwf owowif pwofpwf", home="whitehime", mobile="89766666777", work="wiwiwff",
+                           address="kifwwf owowif pwofpwf", home="34454545", mobile="89766666777", work="45455445",
                            fax="97632",
                            email="jfhwwfiwi@yandex.ru", address2="gwiiree ierjjie oerperpe", phone2="8973333333",
                            notes="jfkwkjfkw jwfjwfj whfhwfhwfwfiwffw")

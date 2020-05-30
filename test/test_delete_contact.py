@@ -1,4 +1,4 @@
-from model.group_new_contact import New_contact
+from model.contact import New_contact
 from random import randrange
 
 
@@ -6,7 +6,7 @@ def test_delete_contact(app):
     if app.group_new_contact.count() == 0:
         app.group_new_contact.add_new_contact(New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
                         company="erreeg",
-                        address="fwfawfaf fwfwaf fferwrr", home="wfwff", mobile="89077777777", work="wrefddf",
+                        address="fwfawfaf fwfwaf fferwrr", home="454655665", mobile="89077777777", work="5656565656",
                         fax="809876",
                         email="fesefsf@mail.ru", address2="awwaagwg ffeef fefert", phone2="89066666666",
                         notes="awfawafwa fjfjhw fehgerrt"))
