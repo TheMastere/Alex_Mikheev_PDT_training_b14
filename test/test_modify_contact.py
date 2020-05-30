@@ -7,18 +7,18 @@ def test_modify_contact(app):
         app.group_new_contact.add_new_contact(
             New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
                         company="erreeg",
-                        address="fwfawfaf fwfwaf fferwrr", home="454655665", mobile="89077777777", work="5656565656",
+                        address="fwfawfaf fwfwaf fferwrr", homephone="454655665", mobilephone="89077777777", workphone="5656565656",
                         fax="809876",
-                        email="fesefsf@mail.ru", address2="awwaagwg ffeef fefert", phone2="89066666666",
+                        email="fesefsf@mail.ru", email1="fwfwf@mail.ru", email2="wfwfwfwfrer@gg.ru", email3="fwghehjrlt@ruru", address2="awwaagwg ffeef fefert", secondary_phone="89066666666",
                         notes="awfawafwa fjfjhw fehgerrt"))
     old_contacts = app.group_new_contact.get_contact_list()
     index = randrange(len(old_contacts))
     contacts = New_contact(firstname="Niokolay", middlename="ggggg", lastname="Stekolnikov", nickname="Steklov",
                            title="razotr",
                            company="bichpacket",
-                           address="kifwwf owowif pwofpwf", home="34454545", mobile="89766666777", work="45455445",
+                           address="kifwwf owowif pwofpwf", homephone="34454545", mobilephone="89766666777", workphone="45455445",
                            fax="97632",
-                           email="jfhwwfiwi@yandex.ru", address2="gwiiree ierjjie oerperpe", phone2="8973333333",
+                           email="fesefsf@mail.ru", email1="fwfwf@mail.ru", email2="wfwfwfwfrer@gg.ru", email3="fwghehjrlt@ruru", address2="gwiiree ierjjie oerperpe", secondary_phone="8973333333",
                            notes="jfkwkjfkw jwfjwfj whfhwfhwfwfiwffw")
     contacts.id = old_contacts[index].id
     app.group_new_contact.modify_contact_by_index(index, contacts)
