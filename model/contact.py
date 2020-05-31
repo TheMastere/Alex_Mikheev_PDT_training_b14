@@ -3,8 +3,10 @@ from sys import maxsize
 
 class New_contact:
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
-                 address=None, homephone=None, mobilephone=None, workphone=None, fax=None, email1=None, email2=None, email3=None,
-                 all_email=None, all_phones_from_home_page=None, email=None, address2=None, secondary_phone=None, notes=None,
+                 address=None, homephone=None, mobilephone=None, workphone=None, fax=None, email1=None, email2=None,
+                 email3=None,
+                 all_email=None, all_phones_from_home_page=None, email=None, address2=None, secondary_phone=None,
+                 notes=None,
                  id=None):
         self.firstname = firstname
         self.middlename = middlename
@@ -29,7 +31,11 @@ class New_contact:
         self.id = id
 
     def __repr__(self):
-        return "%s:%s:%s" % (self.id, self.lastname, self.firstname)
+        return "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (
+        self.id, self.lastname, self.firstname, self.middlename,
+        self.nickname, self.title, self.address, self.homephone, self.address2,
+        self.workphone, self.mobilephone, self.secondary_phone,
+        self.email, self.company, self.fax, self.notes)
 
     def __eq__(self, other):
         return self.id is None or other.id is None or self.id == other.id and self.firstname == other.firstname \
