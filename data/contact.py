@@ -15,18 +15,3 @@ constant = [
                 email="email2", secondary_phone="secondary_phone2"),
 ]
 
-
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits + string.punctuation + " " *10
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-
-testdata = [New_contact(firstname="", middlename="", lastname="", address="",
-                        homephone="", mobilephone="", workphone="",
-                        email="", secondary_phone="")] + [
-               New_contact(firstname=random_string("name", 10), middlename=random_string("name", 10),
-                           lastname=random_string("name", 10), address=random_string("name", 20),
-                           homephone=random_string("name", 7), mobilephone=random_string("name", 7),
-                           workphone=random_string("name", 7),
-                           email=random_string("name", 10), secondary_phone=random_string("name", 7))
-]
