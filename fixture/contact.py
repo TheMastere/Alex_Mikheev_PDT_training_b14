@@ -39,7 +39,11 @@ class ContactHelper:
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_elements_by_name("selected[]")[id].click()
+
+    def select_contact_by_id(self, contact_id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[id='%s']" % contact_id).click()
 
     def select_contact(self):
         wd = self.app.wd
@@ -54,6 +58,17 @@ class ContactHelper:
         self.select_contact_by_index(index)
         # click button for edit contact
         wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
+        # fill contact form
+        self.fill_contact_form(new_contact)
+        # submit modification
+        wd.find_element_by_name("update").click()
+        wd.find_element_by_link_text("home page").click()
+        self.contact_cache = None
+
+    def modify_contact_by_id(self, id, new_contact):
+        wd = self.app.wd
+        self.open_home_page()
+        self.open_contact_to_edit_by_id(id)
         # fill contact form
         self.fill_contact_form(new_contact)
         # submit modification
@@ -120,6 +135,11 @@ class ContactHelper:
         row = wd.find_elements_by_name("entry")[index]
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
+
+    def open_contact_to_edit_by_id(self, contact_id):
+        wd = self.app.wd
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_css_selector("a[href='edit.php?id=%s']" % contact_id).click()
 
     def open_contact_view_by_index(self, index):
         wd = self.app.wd

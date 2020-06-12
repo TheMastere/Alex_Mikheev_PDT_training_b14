@@ -1,9 +1,9 @@
 from model.contact import New_contact
-from random import randrange
+import random
 
 
-def test_modify_contact(app):
-    if app.group_new_contact.count() == 0:
+def test_modify_contact(app, db, check_ui):
+    if len(db.get_contact_list()) == 0:
         app.group_new_contact.add_new_contact(
             New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
                         company="erreeg",
@@ -11,21 +11,21 @@ def test_modify_contact(app):
                         fax="809876",
                         email="fesefsf@mail.ru", email1="fwfwf@mail.ru", email2="wfwfwfwfrer@gg.ru", email3="fwghehjrlt@ruru", address2="awwaagwg ffeef fefert", secondary_phone="89066666666",
                         notes="awfawafwa fjfjhw fehgerrt"))
-    old_contacts = app.group_new_contact.get_contact_list()
-    index = randrange(len(old_contacts))
-    contacts = New_contact(firstname="Niokolay", middlename="ggggg", lastname="Stekolnikov", nickname="Steklov",
-                           title="razotr",
-                           company="bichpacket",
-                           address="kifwwf owowif pwofpwf", homephone="34454545", mobilephone="89766666777", workphone="45455445",
-                           fax="97632",
-                           email="fesefsf@mail.ru", email1="fwfwf@mail.ru", email2="wfwfwfwfrer@gg.ru", email3="fwghehjrlt@ruru", address2="gwiiree ierjjie oerperpe", secondary_phone="8973333333",
-                           notes="jfkwkjfkw jwfjwfj whfhwfhwfwfiwffw")
-    contacts.id = old_contacts[index].id
-    app.group_new_contact.modify_contact_by_index(index, contacts)
-    new_contacts = app.group_new_contact.get_contact_list()
+    old_contacts = db.get_contact_list()
+    modify_contact = random.choice(old_contacts)
+    contact = New_contact(firstname="Alex", middlename="fffefe", lastname="wfawf", nickname="fwwfett", title="wfwfwer",
+                        company="erreeg",
+                        address="fwfawfaf fwfwaf fferwrr", homephone="454655665", mobilephone="89077777777", workphone="5656565656",
+                        fax="809876",
+                        email="fesefsf@mail.ru", email1="fwfwf@mail.ru", email2="wfwfwfwfrer@gg.ru", email3="fwghehjrlt@ruru", address2="awwaagwg ffeef fefert", secondary_phone="89066666666",
+                        notes="awfawafwa fjfjhw fehgerrt")
+    contact.id = modify_contact.id
+    app.group_new_contact.modify_contact_by_id(contact, contact.id)
+    new_contacts = db.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
-    old_contacts[index] = contacts
-    assert sorted(old_contacts, key=New_contact.id_or_max) == sorted(new_contacts, key=New_contact.id_or_max)
+    old_contacts = contact
+    if check_ui:
+        assert sorted(app.contact.get_contact_list(), key=New_contact.id_or_max) == sorted(new_contacts, key=New_contact.id_or_max)
 
 # def test_modify_contact_firstname(app):
 #     old_contacts = app.group_new_contact.get_contact_list()
