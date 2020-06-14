@@ -178,6 +178,15 @@ class ContactHelper:
         return New_contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone,
                            secondary_phone=secondary_phone)
 
+    def add_contact_to_group(self, contact, group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_name("to_group").click()
+        wd.find_element_by_xpath("(//option[@value='%s'])[2]" % group.id).click()
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_name("add").click()
+        self.open_home_page()
+
     def clear(self, s):
         return re.sub("[() -]", "", s)
 
