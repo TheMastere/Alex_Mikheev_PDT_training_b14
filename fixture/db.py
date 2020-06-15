@@ -2,6 +2,7 @@ import pymysql.cursors
 from model.contact import New_contact
 from model.group import Group
 
+
 class DbFixture:
 
     def __init__(self, host, port, name, user, password):
@@ -10,7 +11,8 @@ class DbFixture:
         self.name = name
         self.user = user
         self.password = password
-        self.connection = pymysql.connect(host=host, port=port, database=name, user=user, password=password, autocommit=True)
+        self.connection = pymysql.connect(host=host, port=port, database=name, user=user, password=password,
+                                          autocommit=True)
 
     def get_group_list(self):
         group_list = []
@@ -28,11 +30,14 @@ class DbFixture:
         contact_list = []
         cursor = self.connection.cursor()
         try:
-            cursor.execute("select id, firstname, lastname, middlename, company, address, home, mobile, work, email from addressbook where deprecated='0000-00-00 00:00:00'")
+            cursor.execute(
+                "select id, firstname, lastname, middlename, company, address, home, mobile, work, phone2, email, email2, email3 from addressbook where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
-                (id, firstname, lastname, middlename, company, address, home, mobile, work, email) = row
-                contact_list.append(New_contact(id=str(id), firstname=firstname, lastname=lastname, middlename=middlename, company=company,
-                                  address=address, homephone=home, mobilephone=mobile, workphone=work, email=email))
+                (id, firstname, lastname, middlename, company, address, home, mobile, work, phone2, email, email2, email3) = row
+                contact_list.append(
+                    New_contact(id=str(id), firstname=firstname, lastname=lastname, middlename=middlename,
+                                company=company,
+                                address=address, homephone=home, mobilephone=mobile, workphone=work, secondary_phone=phone2, email1=email, email2=email2, email3=email3))
         finally:
             cursor.close()
         return contact_list

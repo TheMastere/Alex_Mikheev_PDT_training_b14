@@ -65,7 +65,7 @@ class ContactHelper:
         wd.find_element_by_link_text("home page").click()
         self.contact_cache = None
 
-    def modify_contact_by_id(self, id, new_contact):
+    def modify_contact_by_id(self, new_contact, id):
         wd = self.app.wd
         self.open_home_page()
         self.open_contact_to_edit_by_id(id)
@@ -177,6 +177,15 @@ class ContactHelper:
         secondary_phone = re.search("P: (.*)", text).group(1)
         return New_contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone,
                            secondary_phone=secondary_phone)
+
+    def delete_contact_from_group(self, contact, group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath("//option[@value='%s']" % group.id).click()
+        self.select_contact_by_id(contact.id)
+        wd.find_element_by_name("remove").click()
+        self.open_home_page()
 
     def add_contact_to_group(self, contact, group):
         wd = self.app.wd
